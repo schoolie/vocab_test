@@ -14,6 +14,7 @@ def index():
         counts.append(Word.query.filter(Word.confidence == n).count())
     return render_template('index.html', counts=counts)
 
+@main.route('/word', methods=['GET', 'POST'])
 @main.route('/word/<int:level>', methods=['GET', 'POST'])
 @main.route('/word/<int:level>/<int:id>', methods=['GET', 'POST'])
 def word(level=None, id=None):
