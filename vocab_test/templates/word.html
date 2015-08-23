@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Vocab Test{% endblock %}
+
+{% block content %}
+    <h3><a href="https://www.google.com/search?q=define+{{word.word}}" target="_blank">{{word.word}}</a></h3>
+    <div class="btn-group" role="group">
+        {% for n in [1,2,3,4] %}
+            {% if n == word.confidence %}
+                <a class="btn btn-primary" href="{{url_for('.set_confidence', id=word.id, level=n)}}">{{n}}</a>
+            {% else %}
+                <a class="btn btn-default" href="{{url_for('.set_confidence', id=word.id, level=n)}}">{{n}}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <br>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Definition <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><p>{{word.definition}}</p></li>
+        </ul>
+    </div>
+{% endblock %}
+
